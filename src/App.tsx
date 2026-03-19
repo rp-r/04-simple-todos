@@ -100,13 +100,13 @@ setTodos([...todos]);
   { todos.length ?(<>
       <h2 className="h5 mb-2">💪🏻 stuff I got to do</h2>
       <ListGroup className="todolist mb-3">
-      { incompletedtodos.map(todo=>(<TodoListitem todo={todo} key={todo.id}      />)
+      { incompletedtodos.map(todo=>(<TodoListitem todo={todo} key={todo.id}  onDelete={handleDeleteTodo} onToggle={handleToggleTodo}    />)
     )}
     </ListGroup>
       <h2 className="h5 mb-2">🙄 stuff I  have completed </h2>
       <ListGroup className="todolist mb-3">
       { completedtodos.map(todo=>(
-        <TodoListitem  key={todo.id} todo={todo}/>
+        <TodoListitem  key={todo.id} todo={todo} onDelete={handleDeleteTodo} onToggle={handleToggleTodo}/>
       )
     )}
     </ListGroup>
