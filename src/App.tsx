@@ -10,6 +10,7 @@ import ListGroup from "react-bootstrap/ListGroup"
 import InputGroup from "react-bootstrap/InputGroup"
 import TodoCounter from "./components/TodoCounter"
 import TodoListitem from "./components/TodoListitem"
+import TodoForm from "./components/TodoForm"
 
 
 
@@ -24,31 +25,30 @@ const intialTodos:Todo[]=[
 
 function App() {
 
-  const [inputtodotitle,setInputtodotitle]=useState("");
+
 
  
   const [todos,setTodos]=useState(intialTodos);
 
-  const trimmedinputtodotitle=inputtodotitle.trim();
+
   
-  const handleAdd=(e:React.SubmitEvent)=>
+  const handleAdd=(title:string)=>
   {
 
-    e.preventDefault();
+    //e.preventDefault();
 
 
     //CREATE NEW todos
 
-     
-    
+         
 
     setTodos([...todos,{
 
       id:Math.max(0, ...todos.map(todo=>todo.id))+1,
-      title:inputtodotitle.trim(),
+      title,
       completed:false
     }])
-    setInputtodotitle('');
+    //setInputtodotitle('');
   }
   
   const handleToggleTodo=(todo:Todo)=>
@@ -72,31 +72,8 @@ setTodos([...todos]);
       <p className="text-primary"> IN THE NAME OF ALLLAH</p>
       <Container>
           <h1> Simple todos</h1>
-      <Form onSubmit={handleAdd}  className="mb-4">
-        <InputGroup >
-        <Form.Control 
-        aria-label="New todo title"
-       
-        onChange={(e)=>setInputtodotitle(e.target.value)}
-        value={inputtodotitle}
-        placeholder="learn abour GTD"
-        required
-
-        />
-        <Button        
-        disabled={trimmedinputtodotitle.length<3}
-        variant="success" 
-        type="submit"
-        
-        > Create</Button>
-        </InputGroup>
-
-    {(trimmedinputtodotitle.length >0 && trimmedinputtodotitle.length < 3 )&& (<Form.Text className="text-danger text-small">
-        That's a too short to do ,better to do it right away instead! 
-      </Form.Text>)}
-      
-
-      </Form>
+          <TodoForm onhandleAdd={handleAdd}/>
+    
   { todos.length ?(<>
       <h2 className="h5 mb-2">💪🏻 stuff I got to do</h2>
       <ListGroup className="todolist mb-3">
