@@ -5,32 +5,31 @@ import type {Todo} from "../types/Todo.types"
 interface TodoListitemProps
 {
 
-    onDelete:(todo:Todo)=> void;
-    onToggle:(todo:Todo)=> void;
 
     todo:Todo;
 
 }
 
-const TodoListitem:React.FC<TodoListitemProps> =({todo,onDelete,onToggle})=>
+const TodoListitem:React.FC<TodoListitemProps> =({todo})=>
 {
     return(<ListGroup.Item 
-       
-       className={todo.completed?'completed':""}
+       key={todo.id}
+       //className={todo.completed?'completed':""}
        >
         <span className="todo-title">{todo.title}</span>
 
         <div> 
           <Button size="sm" variant="outline-warning"
-        onClick={()=>onToggle(todo)}
+        //onClick={()=>handleToggleTodo(todo)}
         >Toggle</Button>
         
          <Button size="sm" variant="outline-danger"
-        onClick={()=> onDelete(todo)}
+        //onClick={()=>handleDeleteTodo(todo)}
         >Delete</Button>
         </div>
-      </ListGroup.Item>)
-}
-
+      </ListGroup.Item>
+    </>
+  );
+};
 
 export default TodoListitem;
