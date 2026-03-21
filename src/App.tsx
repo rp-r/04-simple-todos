@@ -9,6 +9,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import InputGroup from "react-bootstrap/InputGroup";
 import TodoCounter from "./components/TodoCounter";
 import TodoListitem from "./components/TodoListitem";
+import Todolist from "./components/todolist";
 
 const intialTodos: Todo[] = [
   { id: 1, title: "Make coffee", completed: true },
@@ -20,7 +21,7 @@ const intialTodos: Todo[] = [
 function App() {
   const [inputtodotitle, setInputtodotitle] = useState("");
 
-  const [inputtodotitle, setInputtodotitle] = useState("");
+  //const [inputtodotitle, setInputtodotitle] = useState("");
 
   const [todos, setTodos] = useState(intialTodos);
 
@@ -89,17 +90,45 @@ function App() {
         {todos.length ? (
           <>
             <h2 className="h5 mb-2">💪🏻 stuff I got to do</h2>
-            <ListGroup className="todolist mb-3">
+            {/**   <ListGroup className="todolist mb-3">
               {incompletedtodos.map((todo) => (
-                <TodoListitem todo={todo} key={todo.id} />
+                <TodoListitem
+                  todo={todo}
+                  key={todo.id}
+                  onDelete={handleDeleteTodo}
+                  onToggle={handleToggleTodo}
+                />
+
+
+
+
+
               ))}
-            </ListGroup>
+            </ListGroup> */}
+            <Todolist
+              onDelete={handleDeleteTodo}
+              onToggle={handleToggleTodo}
+              todos={incompletedtodos}
+            />
+
             <h2 className="h5 mb-2">🙄 stuff I have completed </h2>
-            <ListGroup className="todolist mb-3">
+
+            {/**    <ListGroup className="todolist mb-3">
               {completedtodos.map((todo) => (
-                <TodoListitem key={todo.id} todo={todo} />
+                <TodoListitem
+                  key={todo.id}
+                  todo={todo}
+                  onDelete={handleDeleteTodo}
+                  onToggle={handleToggleTodo}
+                />
               ))}
-            </ListGroup>
+            </ListGroup> */}
+
+            <Todolist
+              onDelete={handleDeleteTodo}
+              onToggle={handleToggleTodo}
+              todos={completedtodos}
+            />
 
             <TodoCounter
               completed={completedtodos.length}
